@@ -62,18 +62,19 @@ public class WhatsappController {
         //Throw "You are not allowed to send message" if the sender is not a member of the group
         //If the message is sent successfully, return the final number of messages in that group.
 
-        try {
-            Integer numberOfMessage = whatsappService.sendMessage(message,sender,group);
-            return numberOfMessage;
-        }
+//        try {
+//            Integer numberOfMessage = whatsappService.sendMessage(message,sender,group);
+//            return numberOfMessage;
+//        }
+        return whatsappService.sendMessage(message,sender,group);
 //        catch (GroupDoesNotExistException exp){
 //            throw new GroupDoesNotExistException();
 //        }catch (SenderNotMemberException exp){
 //            throw new SenderNotMemberException();
 //        }
-        catch (Exception exp){
-            throw new Exception();
-        }
+//        catch (Exception exp){
+//            throw new Exception();
+//        }
     }
 
     @PutMapping("/change-admin")
