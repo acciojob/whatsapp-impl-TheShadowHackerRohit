@@ -72,7 +72,7 @@ public class WhatsappRepository {
         // The 'i^th' created message has message id 'i'.
         // Return the message id.
         messageId +=1;
-        Message message = new Message(messageId,content);
+        Message message = new Message(messageId,content,new Date());
         messageMap.put(messageId,message);// add message to the message Map
         return messageId;
     }
