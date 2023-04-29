@@ -18,8 +18,7 @@ public class WhatsappRepository {
     private int messageId;
 
     HashMap<String,User> userMap = new HashMap<>();
-    HashMap<Integer,Message> messageMap = new HashMap<>();
-   // HashMap<>
+
 
     public WhatsappRepository(){
         this.groupMessageMap = new HashMap<Group, List<Message>>();
@@ -73,7 +72,7 @@ public class WhatsappRepository {
         // Return the message id.
         messageId +=1;
         Message message = new Message(messageId,content);
-        messageMap.put(messageId,message);// add message to the message Map
+        //messageMap.put(messageId,message);// add message to the message Map
         return messageId;
     }
 
