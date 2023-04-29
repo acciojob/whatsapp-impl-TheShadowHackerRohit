@@ -41,10 +41,10 @@ public class WhatsappService {
     }
 
     public int removeUser(User user)  throws Exception {
-        return 0;
+        return whatsappRepository.removeUser(user);
     }
 
     public String findMessage(Date start, Date end, int k) {
-        return "rohit";
+        return whatsappRepository.findMessage(start,end,k);
     }
 }
