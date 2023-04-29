@@ -10,14 +10,17 @@ import java.util.Optional;
 public class WhatsappService {
 
     WhatsappRepository whatsappRepository = new WhatsappRepository();
-    public void createUser(String name, String mobile) {
-        Boolean isUserNumberExists = whatsappRepository.isNumberExist(mobile);
-        if(isUserNumberExists){
-            throw new UserAlreadyExistsException();
-        }
-        else {
-            whatsappRepository.saveUser(name,mobile);
-        }
+    public String createUser(String name, String mobile) throws Exception {
+//        Boolean isUserNumberExists = whatsappRepository.isNumberExist(mobile);
+//        if(isUserNumberExists){
+//            throw new UserAlreadyExistsException();
+//        }
+//        else {
+//            whatsappRepository.saveUser(name,mobile);
+//        }
+//
+        return whatsappRepository.saveUser(name,mobile);
+
 
     }
 
@@ -42,6 +45,6 @@ public class WhatsappService {
     }
 
     public String findMessage(Date start, Date end, int k) {
-        return "";
+        return "rohit";
     }
 }
