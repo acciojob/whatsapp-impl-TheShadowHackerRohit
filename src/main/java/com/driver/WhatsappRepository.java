@@ -17,7 +17,7 @@ public class WhatsappRepository {
     private int customGroupCount;
     private int messageId;
 
-    HashMap<String,User> userMap = new HashMap<>();
+    //HashMap<String,User> userMap = new HashMap<>();
 
 
     public WhatsappRepository(){
@@ -33,7 +33,7 @@ public class WhatsappRepository {
     public void saveUser(String name, String mobile) {
         userMobile.add(mobile);
         User user = new User(name,mobile);
-        userMap.put(name,user);
+       // userMap.put(name,user);
     }
     public Boolean isNumberExist(String mobile) {
         if(userMobile.contains(mobile)) return true;
@@ -70,7 +70,7 @@ public class WhatsappRepository {
     public int createMessage(String content) {
         // The 'i^th' created message has message id 'i'.
         // Return the message id.
-        messageId +=1;
+        this.messageId += 1;
         Message message = new Message(messageId,content);
         //messageMap.put(messageId,message);// add message to the message Map
         return messageId;
