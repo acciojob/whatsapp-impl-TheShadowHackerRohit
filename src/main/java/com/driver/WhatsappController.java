@@ -25,9 +25,10 @@ public class WhatsappController {
             return "SUCCESS";
         }catch (UserAlreadyExistsException exp){
             throw new UserAlreadyExistsException();
-        }catch (Exception exp){
-            throw new Exception("Something went wrong");
         }
+//        catch (Exception exp){
+//            throw new Exception("Something went wrong");
+//        }
 
     }
 
@@ -68,9 +69,10 @@ public class WhatsappController {
             throw new GroupDoesNotExistException();
         }catch (SenderNotMemberException exp){
             throw new SenderNotMemberException();
-        }catch (Exception exp){
-            throw new Exception("Something went wrong");
         }
+//        catch (Exception exp){
+//            throw new Exception();
+//        }
     }
 
     @PutMapping("/change-admin")
@@ -89,9 +91,10 @@ public class WhatsappController {
             throw new UserNotMemberException();
         }catch (ApproverNotAdminException exp){
             throw new ApproverNotAdminException();
-        }catch (Exception exp){
-            throw new Exception("Something went Wrong");
         }
+//        catch (Exception exp){
+//            throw new Exception("Something went Wrong");
+//        }
 
     }
 
