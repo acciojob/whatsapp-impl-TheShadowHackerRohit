@@ -85,18 +85,21 @@ public class WhatsappRepository {
 
         if(!groupUserMap.containsKey(group)){
             throw new GroupDoesNotExistException();
-        } else if (groupUserMap.containsKey(group)) {
+        }
             List<User> listOfUser = groupUserMap.get(group);
+
             if(!listOfUser.contains(sender)){
                 throw new SenderNotMemberException();
-            }else{// if group exists and sender is a member of group
-                senderMap.put(message,sender);
+            }
+            // if group exists and sender is a member of group
+
+                senderMap.put(message,sender);// message add in the map of sender
                 List<Message> messageList = groupMessageMap.get(group);
                 messageList.add(message);
                 finalNumberOfMessageInGroup = messageList.size();
                 groupMessageMap.put(group,messageList);
-            }
-        }
+//            }
+//        }
       return finalNumberOfMessageInGroup;
     }
 
