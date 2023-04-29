@@ -77,30 +77,51 @@ public class WhatsappRepository {
         return messageId;
     }
 
-    public int sendMessage(Message message, User sender, Group group) {
+    public int sendMessage(Message message, User sender, Group group) throws Exception{
         //Throw "Group does not exist" if the mentioned group does not exist
         //Throw "You are not allowed to send message" if the sender is not a member of the group
         //If the message is sent successfully, return the final number of messages in that group.
-        int finalNumberOfMessageInGroup = 0;
 
-        if(!groupUserMap.containsKey(group)){
-            throw new GroupDoesNotExistException();
-        }
-            List<User> listOfUser = groupUserMap.get(group);
-
-            if(!listOfUser.contains(sender)){
-                throw new SenderNotMemberException();
+        if(adminMap.containsKey(group)){
+            List<User> users = groupUserMap.get(group);
+            Boolean userFound = false;
+            for(User user: users){
+                if(user.equals(sender)){
+                    userFound = true;
+                    break;
+                }
             }
-            // if group exists and sender is a member of group
-
-                senderMap.put(message,sender);// message add in the map of sender
-                List<Message> messageList = groupMessageMap.get(group);
-                messageList.add(message);
-                finalNumberOfMessageInGroup = messageList.size();
-                groupMessageMap.put(group,messageList);
-//            }
+            if(userFound){
+                senderMap.put(message, sender);
+                List<Message> messages = groupMessageMap.get(group);
+                messages.add(message);
+                groupMessageMap.put(group, messages);
+                return messages.size();
+            }
+            throw new Exception("You are not allowed to send message");
+        }
+        throw new Exception("Group does not exist");
+//        int finalNumberOfMessageInGroup = 0;
+//
+//        if(!groupUserMap.containsKey(group)){
+//            throw new GroupDoesNotExistException();
 //        }
-      return finalNumberOfMessageInGroup;
+//            List<User> listOfUser = groupUserMap.get(group);
+//
+//
+//            if(!listOfUser.contains(sender)){
+//                throw new SenderNotMemberException();
+//            }
+//            // if group exists and sender is a member of group
+//
+//                senderMap.put(message,sender);// message add in the map of sender
+//                List<Message> messageList = groupMessageMap.get(group);
+//                messageList.add(message);
+//                finalNumberOfMessageInGroup = messageList.size();
+//                groupMessageMap.put(group,messageList);
+////            }
+////        }
+//      return finalNumberOfMessageInGroup;
     }
 
     public void changeAdmin(User approver, User user, Group group) {

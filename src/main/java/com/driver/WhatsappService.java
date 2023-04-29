@@ -18,6 +18,7 @@ public class WhatsappService {
         else {
             whatsappRepository.saveUser(name,mobile);
         }
+
     }
 
     public Group createGroup(List<User> users) {
@@ -28,15 +29,15 @@ public class WhatsappService {
         return whatsappRepository.createMessage(content);
     }
 
-    public int sendMessage(Message message, User sender, Group group) {
+    public int sendMessage(Message message, User sender, Group group) throws Exception {
         return whatsappRepository.sendMessage(message,sender,group);
     }
 
-    public void changeAdmin(User approver, User user, Group group) {
+    public void changeAdmin(User approver, User user, Group group)  throws Exception {
         whatsappRepository.changeAdmin(approver,user,group);
     }
 
-    public int removeUser(User user) {
+    public int removeUser(User user)  throws Exception {
         return 0;
     }
 
