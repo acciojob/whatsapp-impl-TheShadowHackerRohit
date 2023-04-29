@@ -1,0 +1,46 @@
+package com.driver;
+
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class WhatsappService {
+
+    WhatsappRepository whatsappRepository = new WhatsappRepository();
+    public void createUser(String name, String mobile) {
+        Boolean isUserNumberExists = whatsappRepository.isNumberExist(mobile);
+        if(isUserNumberExists){
+            throw new UserAlreadyExistsException();
+        }
+        else {
+            whatsappRepository.saveUser(name,mobile);
+        }
+    }
+
+    public Group createGroup(List<User> users) {
+        return whatsappRepository.createGroup(users);
+    }
+
+    public int createMessage(String content) {
+        return whatsappRepository.createMessage(content);
+    }
+
+    public int sendMessage(Message message, User sender, Group group) {
+        return whatsappRepository.sendMessage(message,sender,group);
+    }
+
+    public void changeAdmin(User approver, User user, Group group) {
+        whatsappRepository.changeAdmin(approver,user,group);
+    }
+
+    public int removeUser(User user) {
+        return 0;
+    }
+
+    public String findMessage(Date start, Date end, int k) {
+        return "";
+    }
+}
