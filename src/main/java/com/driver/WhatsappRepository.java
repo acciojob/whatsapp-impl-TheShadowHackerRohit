@@ -62,6 +62,7 @@ public class WhatsappRepository {
         adminMap.put(group,admin);// add admin to the adminMap
         groupUserMap.put(group,users);// add the list of group to the group-user-Map
         return  group;
+        //return "group added";
     }
 
     public int createMessage(String content) {
@@ -72,6 +73,13 @@ public class WhatsappRepository {
         //messageMap.put(messageId,message);// add message to the message Map
         return messageId;
     }
+
+
+    //Error:  testSendMultipleMessages_Success  Time elapsed: 0.004 s  <<< ERROR!
+    //java.lang.NullPointerException
+
+//    Error:  testSendMessage_Success  Time elapsed: 0.01 s  <<< ERROR!
+//    java.lang.NullPointerException
 
     public int sendMessage(Message message, User sender, Group group) throws Exception{
 
@@ -86,10 +94,21 @@ public class WhatsappRepository {
             }
             if(userFound){
                 senderMap.put(message, sender);
-                List<Message> messages = groupMessageMap.get(group);
-                messages.add(message);
-                groupMessageMap.put(group, messages);
-                return messages.size();
+                if(groupUserMap.containsKey(group)){
+                    if(groupMessageMap.get(group) !=null ){
+                        List<Message> messages = groupMessageMap.get(group);
+                        messages.add(message);
+                        groupMessageMap.put(group, messages);
+                        return messages.size();
+                    }else{
+                        List<Message> newMessage = new ArrayList<>();
+                        newMessage.add(message);
+                        groupMessageMap.put(group, newMessage);
+                        return newMessage.size();
+                    }
+
+                }
+
             }
             throw new Exception("You are not allowed to send message");
         }
